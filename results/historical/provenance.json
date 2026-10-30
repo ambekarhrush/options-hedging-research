@@ -1,0 +1,222 @@
+{
+  "checked_utc": "2026-10-30T13:01:19.092319+00:00",
+  "sources": [
+    {
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/PPUT_History.csv",
+      "sha256": "cd73121b77aa1851a6a945d57ecddb4219d323a07d9aeb7da35296cb62a2e34c",
+      "cache_file": "PPUT.csv",
+      "series": "PPUT",
+      "source_first_date": "1986-06-30",
+      "source_last_date": "2026-10-29"
+    },
+    {
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/CLL_History.csv",
+      "sha256": "d1e2331dead4d76d15aa89ed63c7c8409875c69236f7ed3dac72e277687ac1e6",
+      "cache_file": "CLL.csv",
+      "series": "CLL",
+      "source_first_date": "2008-08-26",
+      "source_last_date": "2026-10-29"
+    },
+    {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1217548800&period2=1767225600&interval=1d",
+      "sha256": "d1f8240c212b737ba84a25999d184a9d65bd74c65d9cd0ce030a31e1c62c503f",
+      "cache_file": "SPY_2008_2025.json",
+      "series": "SPY",
+      "field": "adjusted close; includes distributions and fund expenses"
+    },
+    {
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip",
+      "sha256": "96c23b88e651cbfff3740a53f8225e59ee39893371e96385a1d8125ec2cd9c89",
+      "cache_file": "ff_daily.zip",
+      "series": "RF",
+      "field": "daily RF percent / 100"
+    }
+  ],
+  "start": "2013-12-31",
+  "end": "2025-12-31",
+  "level_rows": 145,
+  "missing_values": {
+    "PPUT": 0,
+    "CLL": 0,
+    "SPY": 0
+  },
+  "validation_start": "2021-01-01",
+  "frequency": "month-end",
+  "source_calendar_issues": {
+    "2008-09-22": [
+      "CLL"
+    ],
+    "2008-11-21": [
+      "CLL"
+    ],
+    "2008-11-24": [
+      "CLL"
+    ],
+    "2008-11-25": [
+      "CLL"
+    ],
+    "2008-11-26": [
+      "CLL"
+    ],
+    "2008-11-28": [
+      "CLL"
+    ],
+    "2008-12-19": [
+      "CLL"
+    ],
+    "2009-01-16": [
+      "CLL"
+    ],
+    "2009-03-20": [
+      "CLL"
+    ],
+    "2012-04-20": [
+      "CLL"
+    ],
+    "2012-11-09": [
+      "CLL"
+    ],
+    "2012-12-03": [
+      "CLL"
+    ],
+    "2013-04-16": [
+      "CLL"
+    ],
+    "2013-05-22": [
+      "CLL"
+    ],
+    "2013-05-29": [
+      "CLL"
+    ],
+    "2013-05-31": [
+      "CLL"
+    ],
+    "2013-06-07": [
+      "CLL"
+    ],
+    "2013-06-13": [
+      "CLL"
+    ],
+    "2013-06-14": [
+      "CLL"
+    ],
+    "2013-06-24": [
+      "CLL"
+    ],
+    "2013-06-25": [
+      "CLL"
+    ],
+    "2013-06-26": [
+      "CLL"
+    ],
+    "2013-06-27": [
+      "CLL"
+    ],
+    "2013-06-28": [
+      "CLL"
+    ],
+    "2013-07-01": [
+      "CLL"
+    ],
+    "2013-07-08": [
+      "CLL"
+    ],
+    "2013-07-11": [
+      "CLL"
+    ],
+    "2013-07-12": [
+      "CLL"
+    ],
+    "2013-09-20": [
+      "CLL"
+    ],
+    "2013-10-18": [
+      "CLL"
+    ],
+    "2013-11-14": [
+      "CLL"
+    ],
+    "2013-11-15": [
+      "CLL"
+    ],
+    "2013-12-20": [
+      "CLL"
+    ],
+    "2014-01-17": [
+      "CLL"
+    ],
+    "2014-02-21": [
+      "CLL"
+    ],
+    "2014-03-21": [
+      "CLL"
+    ],
+    "2014-04-17": [
+      "CLL"
+    ],
+    "2014-05-16": [
+      "CLL"
+    ],
+    "2014-06-20": [
+      "CLL"
+    ],
+    "2014-09-19": [
+      "CLL"
+    ],
+    "2014-10-17": [
+      "CLL"
+    ],
+    "2016-12-16": [
+      "CLL"
+    ],
+    "2018-02-16": [
+      "CLL"
+    ],
+    "2018-11-22": [
+      "PPUT",
+      "SPY"
+    ],
+    "2018-12-03": [
+      "PPUT"
+    ],
+    "2018-12-25": [
+      "PPUT",
+      "SPY"
+    ],
+    "2019-07-05": [
+      "PPUT"
+    ],
+    "2019-12-25": [
+      "PPUT",
+      "SPY"
+    ],
+    "2020-10-16": [
+      "PPUT"
+    ],
+    "2020-11-06": [
+      "CLL"
+    ]
+  },
+  "notes": [
+    "Raw provider files stay in ignored data/private.",
+    "Cached bytes are reused; checked_utc is not necessarily the original retrieval time.",
+    "CLL downloaded history starts August 2008; no claim to cover the full 2007\u20132009 crisis.",
+    "PPUT/CLL are hypothetical total-return indices; SPY is an adjusted ETF proxy, not SPX total return.",
+    "Historical and validation periods are retrospective, not an untouched holdout."
+  ],
+  "code_hashes": {
+    "hedgelab/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hedgelab/engine.py": "f18c22bd6a1d7fe0ac72fa8e31f57683aaa14c2f9c07172b9d0ef0e7da48c534",
+    "hedgelab/historical.py": "38a2bee9d520f08b76dec0950884b3d32a36995044a897efab13281139ad2b2b",
+    "hedgelab/options.py": "97e7bd116902f8b866b773a12f35761e3b87d63aad428751ddbeed2478012fc0",
+    "hedgelab/robustness.py": "6efc2841a6322d4d426863dbd2e2873cdcf284490cdad0e2405750afab1ba347",
+    "hedgelab/study.py": "e4efe5d33b575683fbf100d98bd4825bc827023256d4b53d6dcb66413587fe6f"
+  },
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2"
+  }
+}

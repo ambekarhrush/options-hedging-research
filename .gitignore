@@ -11,3 +11,4 @@ data/private/
 build/
 dist/
 outputs/
+.ipynb_checkpoints/

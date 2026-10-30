@@ -9,7 +9,8 @@ from scipy.special import ndtr
 
 def black_scholes(spot,strike,tau,vol,rate=0.,dividend=0.,put=True):
     s=np.asarray(spot,float); k=np.asarray(strike,float)
-    if np.any(s<=0) or np.any(k<=0) or tau<0 or np.any(np.asarray(vol)<=0):
+    if (not all(np.isfinite(x).all() for x in [s,k,tau,vol,rate,dividend]) or
+        np.any(s<=0) or np.any(k<=0) or tau<0 or np.any(np.asarray(vol)<=0)):
         raise ValueError('Invalid pricing inputs')
     if tau==0: return np.maximum(k-s,0) if put else np.maximum(s-k,0)
     root=np.asarray(vol)*np.sqrt(tau)
@@ -28,10 +29,12 @@ def overlay(spot, implied_vol, coverage=1., put_moneyness=.95, call_moneyness=No
     settles before next purchase. Collar short calls cannot exceed held shares.
     """
     s=np.asarray(spot,float); iv=np.asarray(implied_vol,float)
-    if len(s)!=len(iv) or len(s)<2 or np.any(s<=0) or np.any(iv<=0): raise ValueError('Invalid paths')
-    if not 0<=coverage<=1 or roll_days<1 or cost_bps<0 or put_moneyness<=0:
+    if (s.ndim!=1 or iv.ndim!=1 or len(s)!=len(iv) or len(s)<2 or
+        not np.isfinite(s).all() or not np.isfinite(iv).all() or np.any(s<=0) or np.any(iv<=0)): raise ValueError('Invalid paths')
+    if (not all(np.isfinite(x) for x in [coverage,roll_days,cost_bps,put_moneyness,rate]) or
+        not 0<=coverage<=1 or roll_days<1 or int(roll_days)!=roll_days or not 0<=cost_bps<10000 or put_moneyness<=0):
         raise ValueError('Invalid overlay parameters')
-    if call_moneyness is not None and call_moneyness<=1: raise ValueError('Call must be OTM')
+    if call_moneyness is not None and (not np.isfinite(call_moneyness) or call_moneyness<=1): raise ValueError('Call must be OTM')
     cash=1.; shares=0.; contracts=0.; kp=kc=0.; expiry=0; rows=[]
     fee_rate=cost_bps/10000
     for t,st in enumerate(s):
@@ -59,8 +62,8 @@ def overlay(spot, implied_vol, coverage=1., put_moneyness=.95, call_moneyness=No
             premium=q*coverage*(p-c)
             cash=nav-q*unit-fee; shares=q; contracts=q*coverage
             nav=cash+shares*st+contracts*(p-c)
-        rows.append([nav,premium,fee,shares,contracts])
-    return pd.DataFrame(rows,columns=['nav','net_premium','fees','shares','contracts'])
+        rows.append([nav,premium,fee,shares,contracts,cash,st,p,c,kp,kc,expiry])
+    return pd.DataFrame(rows,columns=['nav','net_premium','fees','shares','contracts','cash','spot','put_mark','call_mark','put_strike','call_strike','expiry_session'])
 
 def scenario_paths(seed=42):
     rng=np.random.default_rng(seed); paths={}
@@ -81,6 +84,7 @@ def optimise_hedge(seed=42, annual_budget=.02, paths=1000):
     Monte Carlo from the displayed scenario paths. No drawdown optimisation or
     assurance that GBM describes actual tail risk.
     """
+    if not isinstance(paths, (int, np.integer)) or paths<20: raise ValueError('At least 20 paths required')
     if not 0<=annual_budget<=.2: raise ValueError('Budget outside [0,20%]')
     rng=np.random.default_rng(seed); z=rng.normal(size=(paths,252))
     log=(.04-.5*.22**2)/252+.22/np.sqrt(252)*z

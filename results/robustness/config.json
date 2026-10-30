@@ -1,0 +1,12 @@
+{
+  "training_seed": 142,
+  "validation_seed": 314,
+  "paths_per_regime": 10000,
+  "frozen_strike": 0.85,
+  "frozen_coverage": 0.75,
+  "risk_matched_equity_weight": 0.895577007910043,
+  "budget": 0.02,
+  "scenario_seed": 42,
+  "scenario_experiments": 288,
+  "note": "Frozen original selection; no re-optimisation across stress regimes. Diagnostic terminal grid is separate from original path-based training."
+}

@@ -1,0 +1,15 @@
+{
+  "base_date": "2013-12-31",
+  "end": "2025-12-31",
+  "validation_start": "2021-01-01",
+  "control_cost_bps": 5,
+  "risk_matched_weights": {
+    "PPUT": 0.7608216846037347,
+    "CLL": 0.7136895966077353
+  },
+  "bootstrap_seed": 2718,
+  "bootstrap_draws": 2000,
+  "bootstrap_block_months": 3,
+  "frequency": "month-end",
+  "selection": "No strike/coverage selection from historical index results"
+}

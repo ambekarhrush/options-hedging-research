@@ -46,14 +46,14 @@ def backtest(returns, targets, cost_bps=5, cash_daily=0.):
     result=pd.DataFrame(rows,index=returns.index,columns=['nav','return','turnover','cost'])
     return result, pd.DataFrame(weights,index=returns.index,columns=returns.columns)
 
-def metrics(r):
+def metrics(r, periods_per_year=252):
     r=pd.Series(r).dropna()
     if r.empty: raise ValueError('No returns')
     nav=(1+r).cumprod(); dd=nav/nav.cummax().clip(lower=1)-1
-    vol=r.std(ddof=1)*np.sqrt(252)
+    vol=r.std(ddof=1)*np.sqrt(periods_per_year)
     q=r.quantile(.05)
-    return {'CAGR': float(nav.iloc[-1]**(252/len(r))-1), 'volatility':float(vol),
-            'Sharpe_zero_cash':float(r.mean()*252/vol) if vol>1e-12 else 0.,
+    return {'CAGR': float(nav.iloc[-1]**(periods_per_year/len(r))-1), 'volatility':float(vol),
+            'Sharpe_zero_cash':float(r.mean()*periods_per_year/vol) if vol>1e-12 else 0.,
             'max_drawdown':float(dd.min()),'daily_ES_95':float(-r[r<=q].mean()),
             'total_return':float(nav.iloc[-1]-1)}
 
