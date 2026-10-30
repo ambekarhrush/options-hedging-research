@@ -1,0 +1,11 @@
+{
+  "seed": 314,
+  "paths": 10000,
+  "chosen_strike_ratio": 0.85,
+  "chosen_coverage": 0.75,
+  "premium_fraction": 0.01987164068035323,
+  "model_hedge_terminal_ES95": 0.21729141011151268,
+  "model_unhedged_terminal_ES95": 0.3556894489542079,
+  "model_hedge_mean_return": 0.03329074136809777,
+  "model_unhedged_mean_return": 0.03904790395909929
+}
