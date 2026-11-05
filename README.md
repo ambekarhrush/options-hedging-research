@@ -1,5 +1,7 @@
 # Options-Based Portfolio Protection Lab
 
+[Project one-pager (PDF)](docs/project-brief.pdf) · [Editable brief](docs/project-brief.md)
+
 **What does downside protection cost—and does it outperform simply holding less equity?**
 
 A reproducible research package combining a continuous **2014–2025 historical benchmark study**, a complete **daily 2021–2025 comparison**, and funded option-model experiments. Two executed Jupyter notebooks connect the evidence to the code.
